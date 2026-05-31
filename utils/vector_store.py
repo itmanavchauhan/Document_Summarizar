@@ -1,3 +1,5 @@
+import os
+import shutil
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 
@@ -8,6 +10,10 @@ embedding_model = HuggingFaceEmbeddings(
 
 
 def store_in_chroma(chunks):
+    
+    # Delete old vector DB
+    if os.path.exists("chroma_db"):
+        shutil.rmtree("chroma_db")
 
     vector_db = Chroma.from_texts(
         texts=chunks,

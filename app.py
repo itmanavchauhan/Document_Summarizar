@@ -34,6 +34,20 @@ if uploaded_files:
     process_button = st.button("🚀 Process Documents")
 
     if process_button:
+        
+        # Clear old data
+        keys_to_remove = [
+            "documents_processed",
+            "processed_text",
+            "chunks",
+            "summary",
+            "extracted_info",
+            "chat_history"
+        ]
+
+        for key in keys_to_remove:
+            if key in st.session_state:
+                del st.session_state[key]
 
         os.makedirs("uploads", exist_ok=True)
 
@@ -209,8 +223,24 @@ if "documents_processed" in st.session_state:
 
     st.subheader("💬 Ask Questions From Documents")
 
-    question = st.text_input(
-        "Ask something about the uploaded documents"
+    # Create chat history
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = []
+
+    # Show old chats
+    for chat in st.session_state.chat_history:
+
+        st.markdown(f"### 👤 Question")
+        st.write(chat["question"])
+
+        st.markdown(f"### 🤖 Answer")
+        st.write(chat["answer"])
+
+        st.markdown("---")
+
+    # Chat input
+    question = st.chat_input(
+        "Ask something about the uploaded documents..."
     )
 
     if question:
@@ -219,6 +249,9 @@ if "documents_processed" in st.session_state:
 
             answer = ask_question(question)
 
-        st.markdown("### 🤖 Answer")
+        st.session_state.chat_history.append({
+            "question": question,
+            "answer": answer
+        })
 
-        st.write(answer)
+        st.rerun()
