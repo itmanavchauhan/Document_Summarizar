@@ -26,7 +26,49 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📄 AI Document Summarizer & Extractor")
+with st.sidebar:
+
+    st.markdown("# 📄 DocAI")
+
+    st.markdown("---")
+
+    st.markdown("""
+    ### Features
+
+    ✅ Document Summarization
+
+    ✅ Information Extraction
+
+    ✅ Semantic Search (RAG)
+
+    ✅ AI Question Answering
+    """)
+
+    st.markdown("---")
+
+    st.info("Built with Streamlit + LangChain + Groq")
+
+st.markdown("""
+<div style="
+padding:25px;
+border-radius:15px;
+background:linear-gradient(
+90deg,
+#1e3a8a,
+#2563eb
+);
+color:white;
+">
+
+<h1>📄 DocAI Assistant</h1>
+
+<h4>
+Upload documents, generate summaries,
+extract information and chat with your files using AI.
+</h4>
+
+</div>
+""", unsafe_allow_html=True)
 
 # =========================
 # FILE UPLOAD
@@ -163,23 +205,32 @@ if (
 
     with col1:
         st.metric(
-            "Characters",
-            len(processed_text)
+            "📄 Characters",
+            f"{len(processed_text):,}"
         )
 
     with col2:
         st.metric(
-            "Words",
-            len(processed_text.split())
+            "📝 Words",
+            f"{len(processed_text.split()):,}"
         )
 
     with col3:
         st.metric(
-            "Chunks",
+            "🧩 Chunks",
             len(chunks)
         )
 
     st.success("✅ Embeddings stored successfully in ChromaDB")
+    
+    st.info("""
+    📌 Document processed successfully.
+
+    You can now:
+    - View summary
+    - Extract information
+    - Ask questions
+    """)
 
     # =========================
     # TABS
@@ -193,10 +244,10 @@ if (
         # "📊 Structured Data"
     # ])
     
-    tab1, tab2, tab3  = st.tabs([
-        "📝 Preview",
+    tab1, tab2, tab3 = st.tabs([
+        "📄 Document Preview",
         "🤖 AI Summary",
-        "📊 Structured Data"
+        "📊 Extracted Information"
     ])
 
     # =========================
@@ -268,11 +319,11 @@ if (
     # Show old chats
     for chat in st.session_state.chat_history:
 
-        st.markdown(f"### 👤 Question")
-        st.write(chat["question"])
+        with st.chat_message("user"):
+            st.write(chat["question"])
 
-        st.markdown(f"### 🤖 Answer")
-        st.write(chat["answer"])
+        with st.chat_message("assistant"):
+            st.write(chat["answer"])
 
         st.markdown("---")
 
@@ -300,3 +351,18 @@ if (
         })
 
         st.rerun()
+        
+st.markdown("---")
+
+st.markdown(
+"""
+<center>
+
+Built with ❤️ using
+
+Streamlit • LangChain • ChromaDB • Groq
+
+</center>
+""",
+unsafe_allow_html=True
+)
