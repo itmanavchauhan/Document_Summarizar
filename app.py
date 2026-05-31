@@ -50,10 +50,8 @@ if not uploaded_files:
     ]
 
     for key in keys_to_remove:
-        if key in st.session_state:
-            del st.session_state[key]
-
-    st.rerun()
+        st.session_state.pop(key, None)
+        
 # =========================
 # PROCESS BUTTON
 # =========================
