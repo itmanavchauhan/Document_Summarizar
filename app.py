@@ -80,6 +80,7 @@ if uploaded_files:
 
         # Store embeddings
         vector_db = store_in_chroma(chunks)
+        st.session_state.vector_db = vector_db
 
         # Generate summary
         with st.spinner("Generating AI Summary..."):
@@ -245,9 +246,16 @@ if "documents_processed" in st.session_state:
 
     if question:
 
+        if "vector_db" not in st.session_state:
+            st.warning("Please process a document first.")
+            st.stop()
+
         with st.spinner("Searching documents..."):
 
-            answer = ask_question(question)
+            answer = ask_question(
+                question,
+                st.session_state.vector_db
+            )
 
         st.session_state.chat_history.append({
             "question": question,

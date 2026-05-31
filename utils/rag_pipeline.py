@@ -4,21 +4,17 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-from utils.vector_store import load_chroma
-
 load_dotenv()
 
 
-def ask_question(question):
-
-    vector_db = load_chroma()
+def ask_question(question, vector_db):
 
     # Retrieve relevant chunks
     docs = vector_db.similarity_search(
         question,
         k=5
     )
-    
+
     print("\nRetrieved Chunks:\n")
 
     for doc in docs:
