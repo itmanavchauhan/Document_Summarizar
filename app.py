@@ -1,12 +1,25 @@
 import streamlit as st
 import os
 
+print("START APP")
+
 from utils.file_loader import process_file
+print("FILE LOADER LOADED")
+
 from utils.text_processor import process_text, create_chunks
+print("TEXT PROCESSOR LOADED")
+
 from utils.summarizer import generate_summary
+print("SUMMARIZER LOADED")
+
 from utils.extractor import extract_information
+print("EXTRACTOR LOADED")
+
 from utils.vector_store import store_in_chroma
+print("VECTOR STORE LOADED")
+
 from utils.rag_pipeline import ask_question
+print("RAG PIPELINE LOADED")
 
 st.set_page_config(
     page_title="Document AI System",
