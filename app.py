@@ -25,6 +25,22 @@ uploaded_files = st.file_uploader(
     type=["pdf", "txt", "docx", "png", "jpg", "jpeg"]
 )
 
+if not uploaded_files:
+
+    keys_to_remove = [
+        "processed_text",
+        "chunks",
+        "summary",
+        "extracted_info",
+        "vector_db",
+        "chat_history"
+    ]
+
+    for key in keys_to_remove:
+        if key in st.session_state:
+            del st.session_state[key]
+
+    st.rerun()
 # =========================
 # PROCESS BUTTON
 # =========================
@@ -42,7 +58,8 @@ if uploaded_files:
             "chunks",
             "summary",
             "extracted_info",
-            "chat_history"
+            "chat_history",
+            "vector_db"
         ]
 
         for key in keys_to_remove:
