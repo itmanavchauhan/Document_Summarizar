@@ -133,10 +133,16 @@ if "documents_processed" in st.session_state:
     # TABS
     # =========================
 
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "📘 Extracted Text",
+    # tab1, tab2, tab3, tab4, tab5 = st.tabs([
+        # "📘 Extracted Text",
+        # "📝 Preview",
+        # "🧩 Chunks",
+        # "🤖 AI Summary",
+        # "📊 Structured Data"
+    # ])
+    
+    tab1, tab2, tab3  = st.tabs([
         "📝 Preview",
-        "🧩 Chunks",
         "🤖 AI Summary",
         "📊 Structured Data"
     ])
