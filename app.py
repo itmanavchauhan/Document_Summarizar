@@ -151,7 +151,7 @@ if "documents_processed" in st.session_state:
     # TAB 1
     # =========================
 
-    with tab1:
+    with tab0:
 
         st.text_area(
             "Document Content",
@@ -163,7 +163,7 @@ if "documents_processed" in st.session_state:
     # TAB 2
     # =========================
 
-    with tab2:
+    with tab1:
 
         st.markdown(processed_text)
 
@@ -171,7 +171,7 @@ if "documents_processed" in st.session_state:
     # TAB 3
     # =========================
 
-    with tab3:
+    with tab0:
 
         st.write(f"Total Chunks: {len(chunks)}")
 
@@ -185,7 +185,7 @@ if "documents_processed" in st.session_state:
     # TAB 4
     # =========================
 
-    with tab4:
+    with tab2:
 
         st.markdown(
             st.session_state.summary
@@ -195,7 +195,7 @@ if "documents_processed" in st.session_state:
     # TAB 5
     # =========================
 
-    with tab5:
+    with tab3:
 
         st.markdown(
             st.session_state.extracted_info
