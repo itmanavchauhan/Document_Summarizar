@@ -1,20 +1,9 @@
 import re
-import nltk
+# import nltk
 
-from nltk.tokenize import sent_tokenize
+# from nltk.tokenize import sent_tokenize
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-
-# Download punkt tokenizer
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
-
-try:
-    nltk.data.find('tokenizers/punkt_tab')
-except LookupError:
-    nltk.download('punkt_tab')
 
 
 # =========================
@@ -33,7 +22,7 @@ def process_text(text):
     text = text.replace("•", "\n• ")
 
     # Sentence segmentation
-    sentences = sent_tokenize(text)
+    sentences = text.split(". ")
 
     cleaned_sentences = []
 
