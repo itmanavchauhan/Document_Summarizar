@@ -142,8 +142,10 @@ if uploaded_files:
 
 if "documents_processed" in st.session_state:
 
-    processed_text = st.session_state.processed_text
-    chunks = st.session_state.chunks
+    processed_text = st.session_state.get("processed_text")
+    summary = st.session_state.get("summary")
+    chunks = st.session_state.get("chunks")
+    extracted_info = st.session_state.get("extracted_info")
 
     st.markdown("---")
 
