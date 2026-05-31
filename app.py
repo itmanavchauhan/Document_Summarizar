@@ -41,6 +41,7 @@ uploaded_files = st.file_uploader(
 if not uploaded_files:
 
     keys_to_remove = [
+        "documents_processed",
         "processed_text",
         "chunks",
         "summary",
@@ -140,12 +141,18 @@ if uploaded_files:
 # SHOW RESULTS
 # =========================
 
-if "documents_processed" in st.session_state:
+if (
+    "documents_processed" in st.session_state
+    and st.session_state.get("processed_text")
+):
 
     processed_text = st.session_state.get("processed_text")
     summary = st.session_state.get("summary")
     chunks = st.session_state.get("chunks")
     extracted_info = st.session_state.get("extracted_info")
+    
+    if not processed_text:
+        st.stop()   
 
     st.markdown("---")
 
