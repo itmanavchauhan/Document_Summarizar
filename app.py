@@ -151,13 +151,13 @@ if "documents_processed" in st.session_state:
     # TAB 1
     # =========================
 
-    with tab0:
+    # with tab0:
 
-        st.text_area(
-            "Document Content",
-            processed_text,
-            height=400
-        )
+        # st.text_area(
+            # "Document Content",
+            # processed_text,
+            # height=400
+        # )
 
     # =========================
     # TAB 2
@@ -171,15 +171,15 @@ if "documents_processed" in st.session_state:
     # TAB 3
     # =========================
 
-    with tab0:
+    # with tab0:
 
-        st.write(f"Total Chunks: {len(chunks)}")
+        # st.write(f"Total Chunks: {len(chunks)}")
 
-        for i, chunk in enumerate(chunks):
+        # for i, chunk in enumerate(chunks):
 
-            with st.expander(f"Chunk {i+1}"):
+            # with st.expander(f"Chunk {i+1}"):
 
-                st.write(chunk)
+                # st.write(chunk)
 
     # =========================
     # TAB 4
